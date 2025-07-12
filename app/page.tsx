@@ -24,6 +24,7 @@ import ProjectsSection from "@/components/projects-section"
 import GitHubSection from "@/components/github-section"
 import LeetCodeSection from "@/components/leetcode-section"
 import AnimatedAvatar from '@/components/cartoon-avatar'
+import CertificationsSection from "@/components/certifications-section"
 
 export default function Portfolio() {
   const [isDark, setIsDark] = useState(false)
@@ -63,25 +64,17 @@ export default function Portfolio() {
       <AnimatedBackground />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-        <div className="w-full max-w-4xl mx-auto px-2 sm:px-4 py-2 sm:py-3 flex justify-between items-center">
-          <motion.h1
-            className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            Syed Zubyl
-          </motion.h1>
-
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center">
+        <div className="glass-nav w-fit mx-auto flex items-center gap-4 rounded-2xl shadow-lg border border-white/30 dark:border-gray-700/40">
           <div className="flex items-center gap-2 sm:gap-4">
             <div className="hidden md:flex gap-3 lg:gap-4">
-              {["home", "about", "skills", "projects", "contact"].map((section) => (
+              {["home", "about", "skills", "certifications", "projects", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize transition-colors text-xs sm:text-sm lg:text-base ${
+                  className={`nav-link capitalize text-xs sm:text-sm lg:text-base px-3 py-1 ${
                     activeSection === section
-                      ? "text-blue-600 dark:text-blue-400"
+                      ? "active text-blue-600 dark:text-blue-400 underline underline-offset-4"
                       : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                   }`}
                 >
@@ -89,8 +82,7 @@ export default function Portfolio() {
                 </button>
               ))}
             </div>
-
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="relative overflow-hidden">
+            <Button variant="ghost" size="icon" onClick={toggleTheme} className="relative overflow-hidden glass-btn">
               <AnimatePresence mode="wait">
                 {isDark ? (
                   <motion.div
@@ -122,8 +114,10 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
       >
+        {/* Animated background shape */}
+        <div className="animated-bg-shape w-96 h-96 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 left-1/2 top-10 -translate-x-1/2" />
         <div className="w-full max-w-2xl mx-auto px-2 sm:px-4 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             {/* Avatar Image */}
@@ -133,8 +127,8 @@ export default function Portfolio() {
               <AnimatedAvatar />
             </div>
 
-            <h1 className="pt-0 pb-4 mb-1 sm:mb-2 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight tracking-tight">
-              Syed Zubyl
+            <h1 className="pt-0 pb-4 mb-1 sm:mb-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight tracking-tight">
+              Syed Zubyl N
             </h1>
 
             <motion.p
@@ -154,15 +148,16 @@ export default function Portfolio() {
             >
               <Button
                 onClick={downloadResumePDF}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-full text-sm w-full sm:w-auto"
+                variant="outline"
+                className="glass-btn px-8 py-3 rounded-full border-2 border-blue-600 text-blue-600 bg-transparent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white text-base font-semibold w-full sm:w-auto shadow-lg focus:ring-4 focus:ring-purple-400/40 focus:outline-none transition-all duration-200"
               >
-                <Download className="mr-2 h-4 w-4" />
+                <Download className="mr-2 h-5 w-5" />
                 Download Resume
               </Button>
               <Button
                 variant="outline"
                 onClick={() => scrollToSection("contact")}
-                className="px-6 py-2 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-sm w-full sm:w-auto"
+                className="glass-btn px-6 py-2 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-sm w-full sm:w-auto"
               >
                 <MessageCircle className="mr-2 h-4 w-4" />
                 Get In Touch
@@ -174,6 +169,8 @@ export default function Portfolio() {
 
       {/* About Section */}
       <section id="about" className="py-12 sm:py-16 lg:py-20 relative">
+        {/* Animated background shape */}
+        <div className="animated-bg-shape w-80 h-80 bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 left-1/4 top-0" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -191,7 +188,7 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Card className="p-4 sm:p-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-0 shadow-xl">
+              <Card className="glass-card p-4 sm:p-6 shadow-xl">
                 <CardContent className="p-0">
                   <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                     Passionate and self-motivated MCA student with a strong foundation in mobile app development,
@@ -229,7 +226,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <Card className="p-4 sm:p-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-0 shadow-xl">
+              <Card className="glass-card p-4 sm:p-6 shadow-xl">
                 <CardHeader className="p-0 mb-4">
                   <CardTitle className="flex items-center gap-3 text-lg sm:text-xl">
                     <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
@@ -264,19 +261,36 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <SkillsSection />
+      <section id="skills" className="relative">
+        <div className="animated-bg-shape w-72 h-72 bg-gradient-to-br from-pink-400 via-blue-400 to-purple-400 right-1/4 top-10" />
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 z-10 w-full flex justify-center pointer-events-none">
+         
+        </div>
+        <SkillsSection cardClassName="glass-card" />
+        <CertificationsSection />
+      </section>
 
       {/* Projects Section */}
-      <ProjectsSection />
+      <section id="projects" className="relative">
+        <div className="animated-bg-shape w-80 h-80 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 left-1/3 top-0" />
+        <ProjectsSection cardClassName="glass-card" />
+      </section>
 
       {/* GitHub Section */}
-      <GitHubSection />
+      <section id="github" className="relative">
+        <div className="animated-bg-shape w-64 h-64 bg-gradient-to-br from-purple-400 via-blue-400 to-pink-400 right-1/2 top-10" />
+        <GitHubSection cardClassName="glass-card" />
+      </section>
 
       {/* LeetCode Section */}
-      <LeetCodeSection />
+      <section id="leetcode" className="relative">
+        <div className="animated-bg-shape w-64 h-64 bg-gradient-to-br from-pink-400 via-blue-400 to-purple-400 left-1/2 top-0" />
+        <LeetCodeSection cardClassName="glass-card" />
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-12 sm:py-16 lg:py-20 relative">
+        <div className="animated-bg-shape w-80 h-80 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 left-1/4 top-0" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -300,7 +314,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <Card className="p-4 sm:p-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-0 shadow-xl">
+              <Card className="glass-card p-4 sm:p-6 shadow-xl">
                 <CardContent className="p-0">
                   <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900 dark:text-white">
                     Contact Information
@@ -361,23 +375,24 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Card className="p-4 sm:p-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-0 shadow-xl">
+              <Card className="glass-card p-4 sm:p-6 shadow-xl">
                 <CardContent className="p-0">
                   <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900 dark:text-white">Quick Actions</h3>
 
                   <div className="space-y-4">
                     <Button
                       onClick={downloadResumePDF}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-2 sm:py-3 text-sm sm:text-base"
+                      variant="outline"
+                      className="glass-btn w-full px-8 py-3 rounded-full border-2 border-blue-600 text-blue-600 bg-transparent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white text-base font-semibold shadow-lg focus:ring-4 focus:ring-purple-400/40 focus:outline-none transition-all duration-200"
                     >
-                      <Download className="mr-2 h-4 w-4" />
+                      <Download className="mr-2 h-5 w-5" />
                       Download Resume
                     </Button>
 
                     <Button
                       asChild
                       variant="outline"
-                      className="w-full py-2 sm:py-3 border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white bg-transparent text-sm sm:text-base"
+                      className="glass-btn w-full py-2 sm:py-3 border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white bg-transparent text-sm sm:text-base"
                     >
                       <a href="https://wa.me/917358547421" target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="mr-2 h-4 w-4" />
@@ -388,7 +403,7 @@ export default function Portfolio() {
                     <Button
                       asChild
                       variant="outline"
-                      className="w-full py-2 sm:py-3 border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white dark:border-gray-400 dark:text-gray-400 bg-transparent text-sm sm:text-base"
+                      className="glass-btn w-full py-2 sm:py-3 border-2 border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white dark:border-gray-400 dark:text-gray-400 bg-transparent text-sm sm:text-base"
                     >
                       <a href="https://github.com/syedzubyl" target="_blank" rel="noopener noreferrer">
                         <Github className="mr-2 h-4 w-4" />
